@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG标签大全</title>
+</head>
+<body>
+<svg width="100%" height="100%">
+    <circle cx="50" cy="50" r="45" stroke="orange" stroke-width="10" fill="#888888" />
+    <rect x="10"  y="210"  rx="50"   ry="100"  width="300" height="150"style="fill:#CCCCCC;stroke:orange;stroke-width:5px;stroke-opacity:.5;" />
+    <ellipse   cx="150" cy="100" rx="90" ry="50"  stroke="orange"  stroke-width="5"  fill="#CFCFCF"  fill-opacity=".6"/>
+    <line x1="0" y1="0"   x2="250" y2="200" style="stroke:rgba(255,0,0,.5);stroke-width:5px;"/>
+    <polygon points="150,75 258,137.5 258,262.5 150,325 42,262.6 42,137.5"  stroke="orange" stroke-width="5" stroke-opacity=".5"   fill="rgba(250,0,0,.3)"/>
+    <polyline points="150,75 258,137.5 258,262.5 150,325 42,262.6 42,137.5" stroke="orange"stroke-width="5"
+fill="none"/>
+    <path d="M 100 100 L 300 100 L 200 300 z"style="fill:orange;stroke:#222222;stroke-width:5px;"/>
+    M = Moveto （移动到坐标）
+    L = Lineto  （绘制直线到坐标）
+    H = Horizontal lineto （绘制水平直线到坐标）
+    V = Vertical lineto（绘制垂直直线到坐标）
+    C = Curveto（绘制曲线到坐标）
+    S = Smooth curveto（绘制光滑曲线到坐标）
+    Q = Quadratic Bézier curve（绘制二次贝纳尔曲线到坐标）
+    T = smooth quadratic Bézier curveto（绘制光滑二次贝纳尔曲线到坐标）
+    A = elliptical Arc（绘制椭圆弧到坐标）
+    Z = closepath（闭合路径）
+
+    <text x="30" y="90" rotate="40,70,90">
+        <tspan x="30" y="100">www.gbtags.com</tspan>
+    </text>
+    <a xlink:href="http://www.gbtags.com" target="_blank">
+        <text x="30" y="180" fill="orange" font-size="18">gbtags.com</text>
+    </a>
+    x - 文字的x轴坐标
+    y - 文字的y轴坐标
+    dx - x轴偏移坐标
+    dy - y轴偏移坐标
+    rotate - 所有文字旋转角度
+    textlength - 渲染的文字所占据长度（可用来设置文字间距）
+    lengthAdjust - 使用何种方式来渲染文字占据长度，对应值：spacing或者spacingAndGlyphs
+
+
+    stroke : 颜色
+    stroke-width: 粗细
+    stroke-linecap: 描边线的末端样式
+    stroke-dasharray: 设置虚线的格式 ， 此属性可以帮助SVG生成漂亮的素描动画效果
+    stroke-dashoffset:前移
+
+    <defs>
+        <filter id="myfilter" x="0" y="0">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5"/>
+        </filter>
+    </defs>
+    <rect x="30" y="30" width="200" height="100" stroke="green" stroke-width="10"
+          fill="orange" filter="url(#myfilter)"/>
+
+
+
+    SVG可用的滤镜是：
+
+    feBlend - 与图像相结合的滤镜
+    feColorMatrix - 用于彩色滤光片转换
+    feComponentTransfer
+    feComposite
+    feConvolveMatrix
+    feDiffuseLighting
+    feDisplacementMap
+    feFlood
+    feGaussianBlur
+    feImage
+    feMerge
+    feMorphology
+    feOffset - 过滤阴影
+    feSpecularLighting
+    feTile
+    feTurbulence
+    feDistantLight - 用于照明过滤
+    fePointLight - 用于照明过滤
+    feSpotLight - 用于照明过滤
+
+
+    <defs>
+        <pattern id="mypattern" patternUnits="userSpaceOnUse"
+                 x="10" y="10" width="100" height="100">
+            <path d="M 0 0 L 100 0 L 50 100 z" fill="#222" stroke="orange" stroke-width="5" />
+        </pattern>
+    </defs>
+
+    <rect x="10" y="10" width="300" height="200" stroke="green" stroke-width="5"
+          fill="url(#mypattern)" />
+
+
+    SVG生成渐变效果非常简单，使用defs来定义渐变，如下定义线性渐变：
+
+    <defs>
+        <linearGradient id="linearGradient">
+            <stop offset="0%" stop-color="#FF0000" />
+            <stop offset="100%" stop-color="#00FFF00" />
+        </linearGradient>
+    </defs>
+
+    如下定义径向渐变：
+
+    <defs>
+        <radialGradient id="radialGradient">
+            <stop offset="0%" stop-color="#FF0000" />
+            <stop offset="100%" stop-color="#00FFF00" />
+        </radialGradient>
+    </defs>
+
+    最后指定使用渐变的图形：
+
+    <rect x="10" y="10" width="300" height="100" stroke="ORANGE" stroke-width="5"
+          fill = "url(#linearGradient)"
+    />
+    <rect x="10" y="150" width="100" height="100" stroke="ORANGE" stroke-width="5"
+          fill = "url(#radialGradient)"
+    />
+
+
+    <rect id="myrect" x="50" y="50" width="200" height="200"
+          fill="orange" onClick="showcolor()" />
+    针对svg图形定义javascript方法：
+<script>
+    function showcolor(){
+        var color = document.getElementById('myrect').getAttributeNS(null,'fill');
+        alert('方形填充色为:' + color);
+    }
+    //点击图形，可以触发对应js方法
+</script>
+
+
+    SVG图形中可以直接嵌套动画animate标签，如下：
+
+    <circle r="35" cx="35" cy="105" fill="brown">
+        <animate attributeName="cx"
+                 from="35"
+                 to="200"
+                 dur="3s"
+                 begin="click"
+                 fill="freeze"
+        />
+    </circle>
+
+    链接参考方式
+    或者也可以使用xlink属性来绑定需要动画的图形，如下：
+
+    <animate xlink:href="#orangeball"
+             attributeName="cx"
+             from="35"
+             to="200"
+             dur="2s"
+             begin="click"
+             fill="remove"
+    />
+
+    只需要在需要添加动画的图形上定义id="orangeball"即可，如下：
+
+    <circle id="orangeball" r="35" cx="35" cy="35" fill="orange">
+
+        restart：定义如何重新开始动画
+        repeatCount：定义重复动画次数
+        repeatDru：定义动画重复总计时间
+
+        相关代码：
+
+
+            <circle id="orangeball" r="35" cx="35" cy="35" fill="orange">
+
+            </circle>
+
+            <circle id="brownball" r="35" cx="35" cy="105" fill="brown">
+
+            </circle>
+
+            <animate xlink:href="#brownball"
+                     attributeName="cx"
+                     from="35"
+                     to="300"
+                     dur="2s"
+                     begin="click"
+                     id="animate-brown"
+            />
+
+            <animate xlink:href="#orangeball"
+                     attributeName="cx"
+                     from="35"
+                     to="300"
+                     dur="2s"
+                     restart="whenNotActive"
+                     repeatCount="indefinite"
+                     repeatDur="00:30"
+                     begin="animate-brown.begin+2s"
+            />
+        我们还可以定义begin的复杂开始方式，如下：
+        begin="animate-brown.begin+2s"
+indefinite
+        indefinite
+        <animate xlink:href="#orangeball"
+                 attributeName="cx"
+                 from="35"
+                 to="265"
+                 dur="2s"
+                 begin="click"
+                 fill="freeze"
+                 keyTimes="0;0.3;0.5;0.7;1"
+                 values="35;65;245;200;265"
+        />
+
+</svg>
+
+<svg viewBox="0 0 800 800">
+
+    <polygon
+            fill = "#dd4814"
+            points = "97.3,0 127.4,60.9 194.6,70.7 145.9,118.1 157.4,185.1 97.3,153.5 37.2,185.1 48.6,118.1 0,70.7 67.2,60.9">
+
+        <animate
+                id = "toCheck"
+                attributeName = "points"
+                dur = "1200ms"
+                fill = "freeze"
+                begin = "indefinite"
+                to = "110,58.2 147.3,0 192.1,29 141.7,105.1 118.7,139.8 88.8,185.1 46.1,156.5 0,125 23.5,86.6 71.1,116.7"
+        />
+
+        <animate
+                id = "toStar"
+                attributeName = "points"
+                dur = "1200ms"
+                fill = "freeze"
+                begin = "indefinite"
+                to = "97.3,0 127.4,60.9 194.6,70.7 145.9,118.1 157.4,185.1 97.3,153.5 37.2,185.1 48.6,118.1 0,70.7 67.2,60.9"
+        />
+
+        <animate
+                id = "toGreen"
+                attributeName = "fill"
+                dur = "1200ms"
+                fill = "freeze"
+                begin = "indefinite"
+                to = "#53B848"
+        />
+
+        <animate
+                id = "toRed"
+                attributeName = "fill"
+                dur = "1200ms"
+                fill = "freeze"
+                begin = "indefinite"
+                to = "#dd4814"
+        />
+
+
+    </polygon>
+
+</svg>
+<script>
+
+    var tocheck = document.getElementById("toCheck"),
+            togreen = document.getElementById("toGreen");
+
+    tocheck.beginElement();
+    togreen.beginElement();
+
+
+    //这里定义一个恢复方法，类似上面
+    var tostar = document.getElementById("toStar"),
+            tored = document.getElementById("toRed");
+
+    function restoreTransform(){
+        tostar.beginElement();
+        tored.beginElement();
+    }
+
+    //这里我们延迟2000ms来执行变形恢复方法，如下：
+
+    setTimeout(restoreTransform, 2000); //大家可以在课程结束自己调试代码试试
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <script src="jquery1.8.js"></script>
+</head>
+<body>
+<br><br><br><br><<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="currentTime" style="width:100px;height: 100px;margin: 0 auto;">1</h1><br><br><br><br><br><br><br><br><br>
+    <script>
+            var clients=window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            var text = document.getElementById("currentTime");
+            var divTop =text.getBoundingClientRect().top;
+            console.log(clients);
+            console.log(divTop);
+            var beginNum = 0;//开始数字
+            var endNum  = 622;//结束数字
+            var jump = 13;//增加的数字
+            var timeSpeed =50;//速度
+
+                setTimeout(change, 500);
+            function change(){
+                if(beginNum<=endNum) {
+                    beginNum=beginNum+jump;
+                    beginNum=beginNum>=endNum ? beginNum=endNum:beginNum=beginNum;
+                    text.innerHTML=beginNum;
+                }else {
+                    beginNum=endNum;
+                }
+                setTimeout(change,timeSpeed);
+            }
+    </script>
+
+
+    <!--<script>-->
+        <!--var text = document.getElementById("currentTime");-->
+        <!--var beginNum = 0;//开始数字-->
+        <!--var endNum  = 1422;//结束数字-->
+        <!--var jump = 13;//增加的数字-->
+        <!--var timeSpeed =50;//速度-->
+        <!--function change(){-->
+            <!--if(beginNum<=endNum) {-->
+                <!--beginNum=beginNum+jump;-->
+                <!--beginNum=beginNum>=endNum ? beginNum=endNum:beginNum=beginNum;-->
+                <!--text.innerHTML=beginNum;-->
+            <!--}else {-->
+                <!--beginNum=endNum;-->
+            <!--}-->
+            <!--setTimeout(change,timeSpeed);-->
+        <!--}-->
+    <!--</script>-->
+</body>
+</html>

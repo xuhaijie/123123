@@ -1,0 +1,100 @@
+* { margin:0; padding:0; word-break:break-all; }
+body { background:#FFF; color:#333; font:12px/1.5em Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;overflow: hidden;}
+h1, h2, h3, h4, h5, h6 { font-size:1em; }
+a { color:#2B93D2; text-decoration:none; }
+a:hover { color:#E31E1C; text-decoration:underline; }
+ul, li { list-style:none; }
+fieldset, img { border:none; }
+
+/* v_show style */
+.v_show { width:595px; margin:20px 0 1px 60px; }
+.v_caption { height:35px; overflow:hidden; background:url(img/btn_cartoon.gif) no-repeat 0 0; }
+.v_caption h2 { float:left; width:84px; height:35px; overflow:hidden; background:url(img/btn_cartoon.gif) no-repeat; text-indent:-9999px; }
+.v_caption .cartoon { background-position: 0 -100px; }
+.v_caption .variety { background-position:-100px -100px; }
+.highlight_tip { display:inline; float:left; margin:14px 0 0 10px; }
+.highlight_tip span { display:inline; float:left; width:7px; height:7px; overflow:hidden; margin:0 2px; background:url(img/btn_cartoon.gif) no-repeat 0 -320px; text-indent:-9999px; }
+.highlight_tip .current { background-position:0 -220px; }
+.change_btn { float:left; margin:7px 0 0 10px; }
+.change_btn span { display:block; float:left; width:30px; height:23px; overflow:hidden; background:url(img/btn_cartoon.gif) no-repeat; text-indent:-9999px; cursor:pointer; }
+.change_btn .prev { background-position:0 -400px;  }
+.change_btn .next { width:31px; background-position:-30px -400px; }
+.v_caption em { display:inline; float:right; margin:10px 12px 0 0; font-family:simsun; }
+.v_content { position:relative; width:592px; height:160px; overflow:hidden; border-right:1px solid #E7E7E7; border-bottom:1px solid #E7E7E7; border-left:1px solid #E7E7E7; }
+.v_content_list { position:absolute; width:2500px;top:0px; left:0px; }
+.v_content ul {float:left;}
+.v_content ul li { display:inline; float:left; margin:10px 2px 0; padding:8px; background:url(img/v_bg.gif) no-repeat; }
+.v_content ul li a { display:block; width:128px; height:80px; overflow:hidden; }
+.v_content ul li img {  width:128px; height:96px; }
+.v_content ul li h4 { width:128px; height:18px; overflow:hidden; margin-top:12px; font-weight:normal; }
+.v_content ul li h4 a { display:inline !important; height:auto !important; }
+.v_content ul li span { color:#666; }
+.v_content ul li em { color:#888; font-family:Verdana; font-size:0.9em; }
+.clear2{content: "";clear: both;overflow: hidden;width: 0;height: 0;}
+
+
+.st_container{
+    width: 100%;height: 100%;position: absolute;left: 0;top: 0;
+}
+.st_container >input,.st_container > a{
+    width: 20%;height: 40px;position: fixed;bottom: 0;line-height: 40px;
+}
+.st_container >input{cursor: pointer;
+    opacity: 0;z-index: 1111;
+}
+.st_container >a{z-index: 11;font-size: 16px;text-align: center; background: #3212a2;color: #fff;text-shadow: 1px 1px 1px rgba(151,24,64,0.2);}
+
+#st-control-1,#st-control-1+a{left: 0;}
+#st-control-2,#st-control-2+a{left: 20%;}
+#st-control-3,#st-control-3+a{left: 40%;}
+#st-control-4,#st-control-4+a{left: 60%;}
+#st-control-5,#st-control-5+a{left: 80%;}
+
+.st_container input:checked + a,.st_container input:checked:hover + a{background: red;}
+.st_container input:checked + a:after{border: 20px solid transparent; border-bottom-color: red; content: "";overflow: hidden;position:absolute;bottom: 100%;left: 50%;margin-left: -20px;}
+.st_container input:hover + a{background: #FF248A;}
+.st-scroll,.st-panel{width: 100%;height: 100%;position: relative;}
+.st-panel h2{font-size: 30px;text-align: center;margin-top: 100px;}
+.st-scroll{left: 0;top: 0;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-backface-visibility: hidden;
+}
+ 
+#st-control-1 input:checked .st-scroll{
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+}
+#st-control-2 input:checked .st-scroll{
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
+.st-panel h2{
+    -webkit-animation: MoveDown 5s infinite 0.5s ;
+    -o-animation: MoveDown 5s infinite 0.5s ;
+    animation: MoveDown 5s infinite 0.5s ;
+}
+@-webkit-keyframes MoveDown {
+    0%{-webkit-transform: translateY(-100px); }
+   50%{-webkit-transform: translateY(0);}
+   100%{-webkit-transform: translateY(-100px);}
+}
+
+
+
+
+
+
+
+
+

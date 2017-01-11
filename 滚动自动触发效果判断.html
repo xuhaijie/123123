@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="jquery1.8.js"></script>
+    <style>
+        p{height:200px;background: red;width: 100%;}
+    </style>
+</head>
+<body>
+
+<div style="height:200px"></div>
+<p id="p" >21212 </p>
+<div style="height:600px"></div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+<script type="text/javascript">
+    var hei = $("#p").offset().top;
+//    alert(hei);
+    $(window).scroll(function(){
+        var gao = $(window).scrollTop();
+        if(hei<gao) {
+            $("#p").css({position:"fixed",top:"0"});
+        }else{
+            $("#p").css("position", "relative");
+        }
+    })
+</script>
