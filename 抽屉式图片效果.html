@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" >
+    <title>用鼠标滚轮滚动控制图片的缩小放大</title>
+    <script type="text/javascript" src="jquery1.8.js"></script>
+<style type="text/css">
+    *{margin: 0;padding: 0;}
+    #main{width: 1240px;margin: 30px auto;overflow: hidden;}
+    ul{width: 2200px;height: 187px;list-style: none;}
+    li{width: 300px;height: 187px;float: left;box-shadow: 0 0 20px #000;padding: 4px;position: relative;overflow: hidden;border: 1px solid #ccc;}
+    img{z-index: 11;position: relative;}
+    #main ul li .con{position: absolute;left: 305px;width: 200px;height: 100%;top: 3px;padding: 20px;background: #3e4452;box-sizing: border-box;}
+    p{color: #fff;width: 170px;line-height: 20px;margin-top: 5px;font-size:16px; text-indent: 2em;}
+    h4{color: greenyellow;margin-top: -15px}
+    a{color: white;background: #3399cc;display: block;width: 120px;height: 30px;line-height: 30px;text-align: center;border-radius: 5px;margin: 10px auto;}
+</style>
+</head>
+<body>
+<div id="main">
+    <ul>
+        <li>
+            <img src="images/1.jpg">
+            <div class="con">
+                <h4><b>影片剧情简介</b></h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.  </p>
+                <a>在线观看</a>
+            </div>
+        </li>
+        <li>
+            <img src="images/2.jpg">
+            <div class="con">
+                <h4><b>影片剧情简介</b></h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                <a>在线观看</a>
+            </div>
+        </li>
+        <li>
+            <img src="images/3.jpg">
+            <div class="con">
+                <h4><b>影片剧情简介</b></h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                <a>在线观看</a>
+            </div>
+        </li>
+        <li>
+            <img src="images/4.jpg">
+            <div class="con">
+                <h4><b>影片剧情简介</b></h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                <a>在线观看</a>
+            </div>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("#main ul li").hover(function() {
+            $(this).stop().animate({width: "500px"}).siblings().animate({width: "228px"})
+            $(this).siblings().find("img").stop().animate({width:"250px",height:"187px"})
+            $(this).siblings().find(".con").stop().animate({left:"260px"})
+        },function(){
+            $("#main ul li").stop().animate({width:"300px"});
+            $(this).siblings().find("img").stop().animate({width:"300px",height:"187px"})
+            $(this).siblings().find(".con").stop().animate({left:"305px"})
+        })
+    })
+</script>
+</body>
+</html>
