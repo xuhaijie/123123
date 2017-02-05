@@ -3,13 +3,75 @@
 <head>
     <meta http-equiv="Content-Language" content="zh-cn" />
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" >
-    <title>用鼠标滚轮滚动控制图片的缩小放大</title>
+    <title>手机站侧边导航栏效果</title>
     <script type="text/javascript" src="jquery1.8.js"></script>
 <style type="text/css">
-
+    *{margin: 0;padding: 0;}
+    html,body{width: 100%;height: 100%;overflow-x:hidden;background: #2a2e3a;}
+    header{height: 100px;background: #262e47;line-height: 100px;text-align: center;position: relative;}
+    .menu{position: absolute;top: 40px;left: 20px;width: 32px;height: 40px;z-index: 1;}
+    .menu span{background: #fff;margin-top: 5px;display: block;width: 32px;height: 5px;}
+    .menu::before,.menu::after{content: "";margin-top: 5px; width: 32px;height: 5px;background: #fff;transition:all 1s;display: block;}
+    .menu:hover span{height: 0;}
+    .menu:hover::before{transform: rotate(45deg);transform-origin: 20% 20%;}
+    .menu:hover::after{transform: rotate(-45deg);transform-origin: 20% 20%;}
+    header h1{font-weight: bold;color: #fff;font-size: 2em;}
+    .page_nav{width: 40%;height: 100%;position: absolute;top:100px; z-index: 1;}
+    .page_nav .sidenav{width: 100%;position: absolute;top: 0;left: 0;}
+    .sidenav li{list-style: none;box-sizing: border-box;}
+    .sidenav li a{color: #fff;display: block;text-decoration: none;line-height: 40px;font-size: 1.5em;padding: 30px 20px;transition: all 1s;}
+    .sidenav li a i{display: block;width: 34px;height: 34px;float: left;}
+    .sidenav li:nth-child(1) a i{background: url("images/1_28.png")no-repeat top;}
+    .sidenav li:nth-child(2) a i{background: url("images/1_29.png")no-repeat top;}
+    .sidenav li:nth-child(3) a i{background: url("images/1_30.png")no-repeat top;}
+    .sidenav li:nth-child(4) a i{background: url("images/1_31.png")no-repeat top;}
+    .sidenav li:nth-child(5) a i{background: url("images/1_32.png")no-repeat top;}
+    .sidenav li a b{opacity: 0;transform:translateX(100%); display: block;transition:all 1s;}
+    .sidenav li a:hover{background: #fff;color: #000;}
+    .sidenav li a:hover i{background-position: bottom;}
+    section{position: absolute;top: 100px;width: 100%;background: #fff;z-index: 2;}
+   .nav li a b{transform: translateX(0);opacity: 1;padding-left:60px;}
+   .nav li:nth-child(1) a b{transition-delay: .3s;}
+   .nav li:nth-child(2) a b{transition-delay: .6s;}
+   .nav li:nth-child(3) a b{transition-delay: .9s;}
+   .nav li:nth-child(4) a b{transition-delay: 1.2s;}
+   .nav li:nth-child(5) a b{transition-delay: 1.5s;}
+   .nav li a:hover b{transition-delay: -.1s;}
 </style>
 </head>
 <body>
-
+    <header>
+        <a class="menu" id="jq_menu"><span></span></a>
+        <h1>首页</h1>
+    </header>
+<nav class="page_nav" id="jq_page_nav">
+    <ul class="sidenav">
+        <li><a href="#"><i></i><b>课程首页</b></a></li>
+        <li><a href="#"><i></i><b>我的课程</b></a></li>
+        <li><a href="#"><i></i><b>课程资料</b></a></li>
+        <li><a href="#"><i></i><b>离线缓存</b></a></li>
+        <li><a href="#"><i></i><b>设置</b></a></li>
+    </ul>
+</nav>
+<section id="jq_page">
+    <img src="images/index.jpg">
+</section>
 </body>
 </html>
+<script>
+    $(function(){
+        var i = 0;
+        $("#jq_menu").click(function(){
+            if(i==0){
+                $("#jq_page").stop().animate({left:"40%"})
+                $("#jq_page_nav ul").addClass("nav");
+                i++;
+
+            }else{
+                $("#jq_page").stop().animate({left:"0"})
+                $("#jq_page_nav ul").removeClass("nav");
+                i=0;
+            }
+        })
+    })
+</script>
