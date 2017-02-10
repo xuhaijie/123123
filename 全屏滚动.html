@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" >
+    <title>全屏滚动</title>
+    <script type="text/javascript" src="jquery1.8.js"></script>
+    <script type="text/javascript" src="jquery.mousewheel.js"></script>
+<style type="text/css" >
+    *{margin: 0;padding: 0;}
+    html,body{height: 100%;}
+    body{overflow: hidden;}
+    #main{width: 100%;height: 100%;background: #ffcccc;}
+    #main div.part{width: 100%;height: 100%;position: relative;background-size: cover;background-position: center;overflow: hidden;}
+    .logo{width: 200px;height: 40px;background: url("img/logo.png");background-size: 100%; position: absolute;top:30px;left:30px;}
+    .part1{background-image: url("img/big1.jpg");}
+    .part1 .con1{width: 650px;height: 230px;background: url("img/1-2.png");background-size: 100%;position: absolute;left: 50%;margin-left: -325px;top: 50px;margin-top:115px;}
+    .part1 .con2{width: 100%;height: 30px;background: #d97f5c;position: absolute;bottom: 0;left: 0;color: #fff;font-size: 14px;text-align: center;line-height: 30px;font-weight: bold;}
+
+    .part2{background: #d97f5c;}
+    .part2 .con1{width: 620px;height: 450px;background-image: url("img/2-2.png");background-size: 100%;position: absolute;left: 50%;top: 50%;margin-left: -310px;margin-top: -225px;}
+    .part3{background-image: url("img/big3.jpg");}
+    .part3 .con1{background-image: url("img/3-2.png");width: 550px;height: 220px;background-size: 100%;position: absolute;top: 50%;left:7%;margin-top: -110px;}
+    .part4{background-image: url("img/big4.jpg");}
+    .part4 .con1{background-image: url("img/4-2.png");width: 270px;height: 220px;background-size: 100%;position: absolute;top: 50%;left:7%;margin-top: -110px;}
+    .part4 .con2{width: 45%;height: 200px;padding: 40px 30px;background: rgba(0,0,0,.5);position: absolute;bottom: 40px;right: 40px;color: #fff;line-height: 30px;}
+    .part5{background-image: url("img/big5.jpg");}
+    .part5 .con1{padding: 20px 0;width:100%;height: 160px;position: absolute;bottom: 0;left: 0;background: rgba(0,0,0,.5)}
+    .part5 .con1 .left{width:50%;height: 160px;float: left;}
+    .part5 .con1 .right{width:50%;height: 160px;float: right;color: #fff;line-height: 30px;padding:10px 5%; }
+    .part6{background-image: url("img/big6.jpg");}
+    .part6 .con1{width:565px;;height:230px;background: url("img/6-2.png");background-size: 100%;top: 40%;left: 90px;position: absolute;}
+    .part7{background: url("img/big7.jpg");}
+    .part7 .con1{width:510px;;height:170px;background: url("img/7-2.png");background-size: 100%;top: 50%;left: 90px;position: absolute;margin-top: -85px;}
+    .part7 .con2{width:380px;;height:530px;background: url("img/7-3.png");background-size: 100%;right:40px;position: absolute;margin-top: -85px;bottom: 0;}
+
+    #slide{width: 20px;height: 156px;position: fixed;top: 50%;left: 30px;margin-top: -78px;}
+    #slide ul li{list-style: none;width: 16px;height: 16px;border: 2px solid #fff;margin:4px 0;border-radius: 10px;cursor: pointer;}
+    #slide ul li.on{background: #fff;}
+</style>
+</head>
+<body>
+    <div id="main">
+        <div class="part1 part" >
+            <div class="logo"></div>
+            <div class="con1"></div>
+            <div class="con2">什么是听课？</div>
+        </div>
+        <div class="part2 part">
+            <div class="logo"></div>
+            <div class="con1"></div>
+        </div>
+        <div class="part3 part">
+            <div class="logo"></div>
+            <div class="con1"></div>
+        </div>
+        <div class="part4 part">
+            <div class="logo"></div>
+            <div class="con1"></div>
+            <div class="con2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae debitis dolor ea, eveniet exercitationem fugiat hic impedit in maxime nam nemo placeat praesentium provident quae quia quibusdam recusandae rem similique suscipit, tempora temporibus voluptatem! Ab alias aliquid aperiam cumque dicta incidunt, inventore iusto odit possimus quo reiciendis rem sequi tenetur. Aut beatae dolore id, incidunt obcaecati officiis possimus, provident quam quasi quisquam sed, sequi voluptas voluptates. Deleniti doloremque eaque esse ex iste natus quis quos similique? Dolorem excepturi fugiat hic illo vero. A aspernatur blanditiis vitae? Ab accusamus autem expedita itaque magnam mollitia neque officia omnis recusandae reiciendis. Culpa doloremque iure maxime nesciunt pariatur quae, vel. Illo nemo porro quae.</div>
+        </div>
+        <div class="part5 part">
+            <div class="logo"></div>
+            <div class="con1">
+                <div class="left"><img src="img/5-2.png" width="410" height="150"></div>
+                <div class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, ad animi asperiores, autem beatae consectetur dolor hic illum in laborum magnam molestias neque nihil perferendis quod reprehenderit rerum tempore! Recusandae?</div>
+            </div>
+        </div>
+        <div class="part6 part">
+            <div class="logo"></div>
+            <div class="con1"></div>
+        </div>
+        <div class="part7 part">
+            <div class="logo"></div>
+            <div class="con1"></div>
+            <div class="con2"></div>
+        </div>
+    </div>
+<div id="slide">
+    <ul>
+        <li class="on"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li></ul>
+</div>
+</body>
+</html>
+
+<script>
+    $(function(){
+        var index = 0;
+        var Time = new Date();
+        setTimeout(function(){
+            $(document).scrollTop(0);
+        },100)
+
+        $("#slide ul li").click(function(){
+            index = $(this).index();
+
+        })
+        $(document).mousewheel(function(ev,dl,x,y){
+            if(new Date()- Time>500){     //解决快速滚动的问题，
+                    Time = new Date();
+                var dl = arguments[1];//第2个内置参数dl方向
+                if(dl<0) {
+                    index++;
+                    index %= 7;
+                    $("#slide ul li").eq(index).addClass("on").siblings().removeClass("on");
+                    $(document.body).stop().animate({
+                        scrollTop: $(window).height() * index,
+                    }, 500)
+                }else{
+                    index--;
+                    if(index<0)index=6;
+                    $("#slide ul li").eq(index).addClass("on").siblings().removeClass("on");
+                    $(document.body).stop().animate({
+                        scrollTop: $(window).height() * index,
+                    }, 500)
+                }
+            }
+
+        })
+        //窗口缩放保持整屏
+        $(window).resize(function(){
+            $(document).scrollTop(index*$(window).height());
+        })
+    })
+</script>

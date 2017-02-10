@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" >
+    <title>轮播图切换</title>
+    <script type="text/javascript" src="jquery1.8.js"></script>
+    <style type="text/css" >
+        *{margin: 0;padding: 0;}
+        body{background: url("img/bg.jpg")center;}
+        #banner{width: 730px;height: 390px;margin: 100px auto 0;background-image: url("img/1.png");border-radius: 10px;box-shadow: 0 0 15px #fff;}
+        #btn{width: 55px;height: 280px;position: fixed;right: 30px;top: 150px;}
+        #btn ul li{list-style: none;width: 55px; height: 55px;border: 1px solid #0f0;margin: 10px 0;background: url("img/icon.jpg");border-radius: 100%;cursor: pointer;}
+    </style>
+</head>
+<body>
+<div id="banner"></div>
+<div id="btn">
+    <ul>
+        <li style="background-position-x: -80px;"></li>
+        <li style="background-position-y: 56px;"></li>
+        <li style="background-position-y: 126px;"></li>
+        <li style="background-position-y:-70px;"></li>
+    </ul>
+</div>
+
+</body>
+</html>
+
+<script>
+    $(function(){
+        var index = 0,play=null;
+        $("#btn ul li").click(function(){
+            clearInterval(play);
+            index = $(this).index();
+            move();
+            play = setInterval(function(){
+                index++;index%=4;
+                move();
+            },3000)
+        })
+        play = setInterval(function(){
+            index++;index%=4;
+            move();
+        },3000)
+        function move(){
+            $("#btn ul li").eq(index).stop().animate({
+                "background-position-x":"-80px"
+            },500).siblings().css("background-position-x","0");
+
+            $("#banner").animate({
+                "background-position-y":- index*390 +"px"
+            },500)
+        }
+
+    })
+</script>

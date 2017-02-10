@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" >
+    <title>单页上下滚动</title>
+    <script type="text/javascript" src="jquery1.8.js"></script>
+    <script type="text/javascript" src="jquery.mousewheel.js"></script>
+    <style type="text/css" >
+        *{margin: 0;padding: 0;}
+        html,body{height: 100%;}
+        body{overflow: hidden;}
+        #bg{width: 100%;height: 100%;}
+        #bg div{width: 100%;height: 100%;background-position: center;background-attachment: fixed;}
+        .bg1{background-image: url("img/big1.jpg");background-size:cover;}
+        .bg2{background-image: url("img/big3.jpg");background-size:cover;}
+        .bg3{background-image: url("img/big4.jpg");background-size:cover;}
+        .bg4{background-image: url("img/big5.jpg");background-size:cover;}
+        #header{width: 100%;height: 47px;position: fixed;top: 25px;}
+        #header .logo{width: 226px;height: 47px;float: left;margin-left: 60px;}
+        #header .nav{width: 400px;height: 47px;float: right;margin-right: 60px;position: relative;}
+        #header .nav ul li{list-style: none;float: left;line-height: 47px;margin-left: 53px;}
+        #header .nav ul li a{color: #fff;font-size: 14px;text-decoration: none;}
+        .circle{position: absolute;width: 58px;height: 30px;border: 1px solid #fff;border-radius: 16px;top:8px;left:36px;z-index: -1;}
+        #slide{width: 100px;height: 330px;position: fixed;top: 30%;left: 60px;background: url("img/nav.png")no-repeat;padding-top: 8px;}
+        #slide ul li{list-style: none;font-size: 12px;color: #fff;padding-left:50px;line-height: 21px;margin-bottom: 55px;cursor: pointer;}
+        #slide ul li.on{background: url("img/nav_cho.png")no-repeat;}
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="logo"><img src="img/logo.png"></div>
+    <div class="nav">
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">常见问题</a></li>
+            <li><a href="#">论坛</a></li>
+            <li><a href="#">360首页</a></li>
+        </ul>
+        <div class="circle"></div>
+    </div>
+</div>
+<div id="bg">
+    <div class="bg1"></div>
+    <div class="bg2"></div>
+    <div class="bg3"></div>
+    <div class="bg4"></div>
+</div>
+<div id="slide">
+    <ul>
+        <li class="on">安全换机</li>
+        <li>无网对穿</li>
+        <li>隐私粉碎</li>
+        <li>一间转移</li>
+    </ul>
+</div>
+</body>
+</html>
+
+<script>
+    $(function(){
+        $(document).scrollTop(0);
+        $(".nav ul li").mouseenter(function() {
+            var Left = $(this).position().left;
+            var Wid = $(this).width();
+            $(".circle").stop().animate({
+                left: Left + 37 + "px",
+                width: Wid + 30 + "px",
+            })
+        })
+        $(".nav").mouseleave(function() {
+            $(".circle").stop().animate({
+                left:"37px",
+                width:"58px",
+            })
+        })
+
+
+        $("#slide ul li").click(function(){
+            $(this).addClass("on").siblings().removeClass("on");
+            var wH = $(window).height();
+            var index = $(this).index();
+            $("html,body").animate({
+                scrollTop: wH*index+"px",
+            })
+        })
+        var Time = new Date();var index = 0;
+        $(document).mousewheel(function(){
+            if(new Date()-Time>500){
+                Time = new Date();
+                var dt= arguments[1];
+                if(dt<0){
+                    index++;
+                    index%=4;
+                }else{
+                    index--;
+                    if(index<0)index=3
+                }
+                $("#slide ul li").eq(index).addClass("on").siblings().removeClass("on");
+                var wH = $(window).height();
+                $("html,body").stop().animate({
+                    scrollTop: wH*index+"px",
+                })
+            }
+        })
+
+        $(window).resize(function(){
+            $(document).scrollTop( index * $(window).height())
+        })
+    })
+</script>
