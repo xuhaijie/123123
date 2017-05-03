@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" >
+    <title>优酷TV</title>
+    <script type="text/javascript" src="jquery1.8.js"></script>
+    <style type="text/css" >
+        *{margin: 0;padding: 0;}
+
+    </style>
+</head>
+<body>
+    <canvas id="php100" width="500" height="500" onmousemove="mousexy(event)"></canvas>
+    <canvas id="can" width="500" height="500" style="background: blue" ></canvas>
+    <div id="ds"></div>
+    <canvas id="can1" width="400" height="400" style="background: yellow" ></canvas>
+<img src="img/01.jpg">
+</body>
+</html>
+<script>
+    var c = document.getElementById("php100");
+    var p100 = c.getContext("2d");
+    //矩形
+    p100.fillStyle="#ff0000";
+    p100.fillRect(0,0,300,300);
+
+    p100.clearRect(30,30,80,30)//擦除一个矩形部分
+
+    //线
+    p100.moveTo(10,10);//起点
+    p100.lineTo(150,50);
+    p100.lineTo(10,50);
+    p100.stroke();//结束图形
+
+    //圆
+    p100.fillStyle="blue";
+    p100.beginPath();
+    p100.arc(200,200,30,0,Math.PI*2,true);
+    p100.closePath();
+    p100.fill();
+
+
+    //渐变
+    var grd=p100.createLinearGradient(100,100,175,50);
+    grd.addColorStop(0,"yellow");
+    grd.addColorStop(1,"blue");
+
+    p100.fillStyle=grd;
+    p100.fillRect(100,100,175,50);
+
+    //圆角矩形
+    p100.strokeStyle="yellow";
+    p100.beginPath();
+    p100.moveTo(20,20);
+    p100.lineTo(70,20);
+    p100.arcTo(120,30,120,70,50);
+    p100.lineTo(120,120);
+    p100.stroke();
+
+    //贝塞尔曲线
+    p100.beginPath();
+    p100.moveTo(100,200);
+    p100.quadraticCurveTo(20,50,200,20);
+    p100.stroke();
+    p100.closePath();
+
+    //创建剪切蒙版
+    p100.arc(100,300,40,0,360*Math.PI/180,true);
+    p100.clip();
+    p100.beginPath();
+    p100.fillStyle="lightblue";
+    p100.fillRect(0,222,300,150);
+
+
+
+    function mousexy(e){
+        x= e.clientX;
+        y= e.clientY;
+        document.getElementById("ds").innerHTML="坐标：X轴"+ x+ " Y轴"+y;
+    }
+
+
+    //特殊字符
+    var canvas = document.getElementById("can");
+    var can = canvas.getContext("2d");
+    can.beginPath();
+    can.moveTo(100,150);
+    can.bezierCurveTo(50,100,100,0,150,50);
+    can.bezierCurveTo(200,0,250,100,200,150);
+    can.bezierCurveTo(250,200,200,300,150,250);
+    can.bezierCurveTo(100,300,50,200,100,150);
+    can.closePath();
+    can.moveTo(100,150);
+    can.lineTo(150,50);
+    can.lineTo(200,150);
+    can.lineTo(150,250);
+    can.lineTo(100,150);
+    can.lineWidth=5;
+    can.strokeStyle="red";
+    can.stroke();
+
+    //文本
+    can.font="bold 30px Arial";
+    can.fillStyle="red";
+    can.textAlign="start";//文本对齐方式
+    can.fillText("hello world",300,50);//字符串 X,Y 坐标
+    can.strokeText("hello world",300,120);//字符串 X,Y 坐标
+
+    var canvas1 = document.getElementById("can1");
+    var can1 = canvas1.getContext("2d");
+
+
+    //图片
+    var image = new Image();
+    image.src="img/01.jpg"
+    image.onload=function(){
+        can1.drawImage(image,10,10);//从画布10 10 坐标开始插入
+        can1.drawImage(image,200,10,50,50);// 后2个是尺寸
+        can1.drawImage(image,10,10,50,50,10,120,60,60);// 选择照片的10,10 到50,50的区域，
+    }
+
+    can1.beginPath();
+    can1.strokeStyle="red";
+    can1.strokeRect(200,200,20,20)
+
+    can1.scale(2,2);
+    can1.beginPath();
+    can1.strokeStyle="blue";
+    can1.strokeRect(200,200,20,20)
+
+</script>

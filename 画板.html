@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" >
+    <title>canvas画板</title>
+    <script type="text/javascript" src="jquery1.8.js"></script>
+    <style type="text/css" >
+        *{margin: 0;padding: 0;}
+        #php100{border: 1px solid #ccc;}
+    </style>
+</head>
+<body>
+    <canvas id="php100" width="500" height="400"></canvas>
+    <br>
+<script>
+    var c = document.getElementById("php100");
+    var p100 = c.getContext("2d");
+    p100.lineWidth=5;
+    p100.strokeStyle="red";
+    var pp = false;
+
+    $("#php100").mousedown(function(e){
+        var mouseX = e.pageX-this.offsetLeft;
+        var mouseY = e.pageY-this.offsetTop;
+        pp = true;
+        p100.moveTo(mouseX,mouseY);
+
+
+    })
+
+    $("#php100").mouseup(function(e){
+        pp = false;
+
+    })
+
+
+    $("#php100").mousemove(function(e){
+        var mouseX = e.pageX-this.offsetLeft;
+        var mouseY = e.pageY-this.offsetTop;
+        if(pp){
+            p100.lineTo(mouseX,mouseY);
+            p100.stroke();
+        }
+
+    })
+</script>
+
+</body>
+</html>

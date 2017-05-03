@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" >
+    <title>html5表单属性</title>
+    <script type="text/javascript" src="jquery1.8.js"></script>
+    <style type="text/css" >
+        *{margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+<form action="" method="get" id="foo">
+    Name: <input type="text" name="usr_name" required="required" /> <br> <!--//必须填写-->
+
+    E-mail: <input name="user_email" placeholder="123123" type="email"/><br> <!--//自动检验邮箱格式-->
+
+    WWW: <input type="url"/><br>  <!--//自动检网址格式-->
+
+    日期: <input type="date"/><br>
+    月份: <input type="month"/><br>
+    周: <input type="week"/><br>
+    时间: <input type="time"/><br>
+    数字: <input type="number"/><br>
+    滑动条: <input type="range" min="0" max="3" step="1"/><br>
+    搜索: <input type="search" results="n" value="搜索"/><br>
+    颜色: <input type="color"/><br>
+    正则表达式: <input type="text" pattern="[123456789]+"/><br>
+
+    <input type="text" list="mydata"/>  <!--//自带选项-->
+    <datalist id="mydata">
+        <option label="top1" value="php111"></option>
+        <option label="top2" value="html5"></option>
+        <option label="top3" value="javascript"></option>
+        <option label="top4" value="赵氏孤儿"></option>
+        <option label="top5" value="初恋这件小事"></option>
+    </datalist>
+    <input type="submit" value ='sub'/>
+</form>
+<br>
+<input type="text" name="txt" form="foo"/>
+<!--//不局限于写在form，可写在form外-->
+</body>
+</html>
